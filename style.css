@@ -19,11 +19,24 @@ body {
 
 .start_btn,
 .info_box,
-.quiz_box {
+.quiz_box,
+.score_box {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2),
+		0px 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: all 0.3s ease;
+}
+
+.info_box.activeInfo,
+.quiz_box.activeInfo,
+.score_box.activeInfo {
+	z-index: 5;
+	opacity: 1;
+	pointer-events: painted;
+	transform: translate(-50%, -50%) scale(1);
 }
 
 .start_btn button {
@@ -41,7 +54,9 @@ body {
 	width: 540px;
 	background-color: #fff;
 	border-radius: 5px;
-	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0.9);
 }
 
 .info_box .info_title {
@@ -115,12 +130,14 @@ body {
 	width: 550px;
 	background-color: #fff;
 	border-radius: 5px;
-	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0.9);
 }
 
 .quiz_box header {
 	position: relative;
-	z-index: 99;
+	z-index: 3;
 	height: 70px;
 	padding: 0 30px;
 	background-color: #fff;
@@ -226,6 +243,11 @@ section .option_list .option:hover {
 	border-color: rgb(206, 20, 20);
 }
 
+.option_list .option.correct {
+	background-color: green;
+	border-color: green;
+}
+
 .quiz_box footer {
 	height: 60px;
 	width: 100%;
@@ -267,4 +289,60 @@ footer .next_btn:hover {
 	background-color: #fff;
 	border-color: var(--bg-color);
 	color: var(--bg-color);
+}
+
+.score_box {
+	background-color: #fff;
+	width: 450px;
+	padding: 25px 30px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0.9);
+}
+
+.score_box .icon {
+	font-size: 100px;
+	color: var(--Orchid);
+	margin-bottom: 10px;
+}
+
+.score_box .complete_text {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.score_box .score_text span {
+	display: flex;
+	margin: 10px 0;
+	font-size: 18px;
+	/* font-weight: 500; */
+}
+
+.score_text span p {
+	font-weight: 500;
+	padding: 0 5px;
+}
+
+.score_box .buttons {
+	display: flex;
+	margin: 20px 0;
+}
+
+.score_box .buttons button {
+	margin: 0 10px;
+	height: 45px;
+	padding: 0 20px;
+	border: none;
+	outline: none;
+	font-size: 18px;
+	font-weight: 500;
+	border-radius: 5px;
+	border: 1px solid;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
