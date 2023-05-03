@@ -236,16 +236,27 @@ section .option_list .option:hover {
 .option_list .option .icon.tick {
 	color: green;
 	border-color: green;
+	background-color: #fff;
 }
 
 .option_list .option .icon.cross {
 	color: rgb(206, 20, 20);
 	border-color: rgb(206, 20, 20);
+	background-color: #fff;
 }
 
 .option_list .option.correct {
-	background-color: green;
+	background-color: rgba(0, 128, 0, 0.5);
 	border-color: green;
+}
+
+.option_list .option.inCorrect {
+	background-color: rgba(255, 0, 0, 0.5);
+	border-color: red;
+}
+
+.option_list .option.disable {
+	pointer-events: none;
 }
 
 .quiz_box footer {
