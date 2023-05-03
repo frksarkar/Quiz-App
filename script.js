@@ -9,6 +9,7 @@ const scoreBox = document.querySelector('.score_box');
 const exitScoreBoxBtn = scoreBox.querySelector('.quit');
 const optionsList = document.querySelector('.option_list');
 const timeCount = quizBox.querySelector('.timer .timer_sec');
+const timeLineProgress = quizBox.querySelector('.linerProgressBar');
 const xmarkIcon =
 	'<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
 const tickIcon =
@@ -18,6 +19,8 @@ const number = {
 	score: 0,
 	counter: null,
 	timerValue: 15,
+	progressBarId: null,
+	progressBarWidth: 0,
 };
 
 // start quiz button clicked
@@ -57,6 +60,7 @@ function showQuestions(index) {
 	});
 	questionCountNum();
 	startTimer(number.timerValue);
+	linerProgressBar();
 }
 
 function questionCountNum() {
@@ -103,13 +107,14 @@ const childElementDisable = (allChildren, optionsList) => {
 
 nextBtn.addEventListener('click', () => {
 	clearInterval(number.counter);
+	clearInterval(number.progressBarId);
+
 	number.questionCount++;
 	if (number.questionCount === question.length) {
 		quizBox.classList.remove('activeInfo');
 		infoBox.classList.remove('activeInfo');
 		number.questionCount = 0;
 		showScore();
-		clearInterval(counter);
 	} else {
 		showQuestions(number.questionCount);
 		questionCountNum();
@@ -134,7 +139,19 @@ function startTimer(time) {
 		timeCount.innerHTML = time;
 		time--;
 		if (time === -1) {
+			number.progressBarWidth = 0;
 			clearInterval(number.counter);
+			clearInterval(number.progressBarId);
 		}
 	}
+}
+
+function linerProgressBar() {
+	number.progressBarId = setInterval(() => {
+		number.progressBarWidth++;
+		timeLineProgress.style.width = `${number.progressBarWidth}%`;
+		if (number.progressBarWidth === 80) {
+			timeLineProgress.style.backgroundColor = 'red';
+		}
+	}, 159);
 }
