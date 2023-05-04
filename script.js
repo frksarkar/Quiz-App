@@ -18,10 +18,29 @@ const xmarkIcon =
 	'<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
 const tickIcon =
 	'<div class="icon tick"><i class="fa-sharp fa-solid fa-check"></i></div>';
+// user input field
+
+const customizeUserField = document.querySelector('.userInputFieldBox');
+const inputUserName = document.querySelector(
+	'.userInputFieldBox #userNameInput'
+);
+const inputQuestionLength = document.querySelector(
+	'.userInputFieldBox #questionNumberInput'
+);
+const inputQuestionValue = document.querySelector(
+	'.userInputFieldBox #questionValueInput'
+);
+const customBtn = infoBox.querySelector('.customizeBtn');
+const userInputBoxExitBtn = customizeUserField.querySelector('.quit');
+const userInputBoxContinueBtn = customizeUserField.querySelector('.restart');
+const errorMess = customizeUserField.querySelector('.buttons p');
+
 let question = BangleQuestion;
 
 const number = {
-	scoreNum: 5,
+	userName: 'gest',
+	questionLength: 10,
+	eachQuestionValue: 10,
 	userScore: 0,
 	questionCount: 0,
 	score: 0,
@@ -30,6 +49,28 @@ const number = {
 	progressBarId: null,
 	progressBarWidth: 0,
 };
+
+userInputBoxExitBtn.addEventListener('click', () => {
+	customizeUserField.classList.remove('activeInfo');
+	infoBox.classList.add('activeInfo');
+});
+
+userInputBoxContinueBtn.addEventListener('click', () => {
+	if (
+		inputUserName.value != '' &&
+		inputQuestionLength.value != '' &&
+		inputQuestionValue.value != ''
+	) {
+		number.userName = inputUserName.value;
+		number.questionLength = parseInt(inputQuestionLength.value);
+		number.eachQuestionValue = parseInt(inputQuestionValue.value);
+		customizeUserField.classList.remove('activeInfo');
+		number.userName = quizBox.classList.add('activeInfo');
+		showQuestions(0);
+		return;
+	}
+	errorMess.style.opacity = 1;
+});
 
 // start quiz button clicked
 startBtn.addEventListener('click', () => {
@@ -75,7 +116,7 @@ function showQuestions(index) {
 function questionCountNum() {
 	const questionElement = quizBox.querySelector('.total_que');
 	const questionTag = `<span><p>${number.questionCount + 1}</p>Of<p>${
-		question.length
+		number.questionLength
 	}</p>Question</span>`;
 	questionElement.innerHTML = questionTag;
 }
@@ -88,7 +129,7 @@ function optionSelected(answer) {
 	const childrenElementLength = optionsList.children.length;
 	if (userAnswer === correctAnswer) {
 		number.score++;
-		number.userScore += number.scoreNum;
+		number.userScore += number.eachQuestionValue;
 		answer.classList.add('correct');
 		answer.insertAdjacentHTML('beforeend', tickIcon);
 	} else {
@@ -120,7 +161,7 @@ nextBtn.addEventListener('click', () => {
 	timeLineProgress.style.backgroundColor = '#af69ef';
 
 	number.questionCount++;
-	if (number.questionCount === question.length) {
+	if (number.questionCount === number.questionLength) {
 		quizBox.classList.remove('activeInfo');
 		infoBox.classList.remove('activeInfo');
 		number.questionCount = 0;
@@ -145,15 +186,21 @@ function showScore() {
 	if (number.userScore < 40) {
 		scoreText.innerHTML = `<span>and sorry, you got only<p>${
 			number.userScore
-		}</p>out of<p>${question.length * number.scoreNum}</p></span>`;
+		}</p>out of<p>${
+			number.questionLength * number.eachQuestionValue
+		}</p></span>`;
 	} else if (number.userScore < 80) {
 		scoreText.innerHTML = `<span>and great, you got only<p>${
 			number.userScore
-		}</p>out of<p>${question.length * number.scoreNum}</p></span>`;
+		}</p>out of<p>${
+			number.questionLength * number.eachQuestionValue
+		}</p></span>`;
 	} else {
 		scoreText.innerHTML = `<span>and supper, you got only<p>${
 			number.userScore
-		}</p>out of<p>${question.length * number.scoreNum}</p></span>`;
+		}</p>out of<p>${
+			number.questionLength * number.eachQuestionValue
+		}</p></span>`;
 	}
 }
 
@@ -204,7 +251,7 @@ function linerProgressBar() {
 }
 
 restartBtn.addEventListener('click', () => {
-	number.scoreNum = 5;
+	number.eachQuestionValue = 5;
 	number.userScore = 0;
 	number.questionCount = 0;
 	number.score = 0;
@@ -225,3 +272,12 @@ languageSwitchBtn.addEventListener('click', () => {
 	}
 	question = BangleQuestion;
 });
+
+// custom question setting
+
+customBtn.addEventListener('click', () => {
+	infoBox.classList.remove('activeInfo');
+	customizeUserField.classList.add('activeInfo');
+});
+
+function customizeQuestionSetting() {}
