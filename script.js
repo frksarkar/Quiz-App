@@ -13,6 +13,7 @@ const timeCount = quizBox.querySelector('.timer .timer_sec');
 const timeLineProgress = quizBox.querySelector('.linerProgressBar');
 const restartBtn = scoreBox.querySelector('.restart');
 const languageSwitchBtn = infoBox.querySelector('input');
+const timeOff = quizBox.querySelector('.time_text');
 const xmarkIcon =
 	'<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
 const tickIcon =
@@ -52,6 +53,7 @@ continueBtn.addEventListener('click', () => {
 // getting questions and options from array
 function showQuestions(index) {
 	const questionText = document.querySelector('.que_text');
+	timeOff.textContent = 'Time Left';
 
 	const questionTag = `<span>${question[index].number}. ${question[index].question} </span>`;
 	questionText.innerHTML = questionTag;
@@ -173,6 +175,7 @@ function startTimer(time) {
 		}
 		if (time === -1) {
 			number.progressBarWidth = 0;
+			timeOff.textContent = 'Time Off';
 			clearInterval(number.counter);
 			clearInterval(number.progressBarId);
 			autoDisableAllElement(optionsList);
