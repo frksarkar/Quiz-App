@@ -6,15 +6,22 @@ const continueBtn = document.querySelector('.buttons .restart');
 const quizBox = document.querySelector('.quiz_box');
 const nextBtn = quizBox.querySelector('.next_btn');
 const scoreBox = document.querySelector('.score_box');
+const scoreText = scoreBox.querySelector('.score_text');
 const exitScoreBoxBtn = scoreBox.querySelector('.quit');
 const optionsList = document.querySelector('.option_list');
 const timeCount = quizBox.querySelector('.timer .timer_sec');
 const timeLineProgress = quizBox.querySelector('.linerProgressBar');
+const restartBtn = scoreBox.querySelector('.restart');
+const languageSwitchBtn = infoBox.querySelector('input');
 const xmarkIcon =
 	'<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
 const tickIcon =
 	'<div class="icon tick"><i class="fa-sharp fa-solid fa-check"></i></div>';
+let question = BangleQuestion;
+
 const number = {
+	scoreNum: 5,
+	userScore: 0,
 	questionCount: 0,
 	score: 0,
 	counter: null,
@@ -73,11 +80,13 @@ function questionCountNum() {
 
 function optionSelected(answer) {
 	clearInterval(number.counter);
+	clearInterval(number.progressBarId);
 	const userAnswer = answer.textContent;
 	const correctAnswer = question[number.questionCount].answer;
-	const allChildren = optionsList.children.length;
+	const childrenElementLength = optionsList.children.length;
 	if (userAnswer === correctAnswer) {
 		number.score++;
+		number.userScore += number.scoreNum;
 		answer.classList.add('correct');
 		answer.insertAdjacentHTML('beforeend', tickIcon);
 	} else {
@@ -86,21 +95,18 @@ function optionSelected(answer) {
 
 		// if answer is wrong than auto magically select correct answer
 
-		for (let i = 0; i < allChildren; i++) {
-			if (optionsList.children[i].textContent === correctAnswer) {
-				optionsList.children[i].setAttribute('class', 'option correct');
-			}
-		}
+		autoSelectedAns(childrenElementLength, correctAnswer);
 	}
+	nextBtn.style.display = 'block';
 
-	// for (let i = 0; i < allChildren; i++) {
+	// for (let i = 0; i < childrenElementLength; i++) {
 	// 	optionsList.children[i].classList.add('disable');
 	// }
-	childElementDisable(allChildren, optionsList);
+	childElementDisable(childrenElementLength, optionsList);
 }
 
-const childElementDisable = (allChildren, optionsList) => {
-	for (let i = 0; i < allChildren; i++) {
+const childElementDisable = (childrenElementLength, optionsList) => {
+	for (let i = 0; i < childrenElementLength; i++) {
 		optionsList.children[i].classList.add('disable');
 	}
 };
@@ -108,6 +114,8 @@ const childElementDisable = (allChildren, optionsList) => {
 nextBtn.addEventListener('click', () => {
 	clearInterval(number.counter);
 	clearInterval(number.progressBarId);
+	number.progressBarWidth = 0;
+	timeLineProgress.style.backgroundColor = '#af69ef';
 
 	number.questionCount++;
 	if (number.questionCount === question.length) {
@@ -118,12 +126,33 @@ nextBtn.addEventListener('click', () => {
 	} else {
 		showQuestions(number.questionCount);
 		questionCountNum();
+		nextBtn.style.display = 'none';
 	}
 });
 
+function autoSelectedAns(childrenElementLength, correctAnswer) {
+	for (let i = 0; i < childrenElementLength; i++) {
+		if (optionsList.children[i].textContent === correctAnswer) {
+			optionsList.children[i].setAttribute('class', 'option correct');
+		}
+	}
+}
+
 function showScore() {
 	scoreBox.classList.add('activeInfo');
-	console.log(number.score);
+	if (number.userScore < 40) {
+		scoreText.innerHTML = `<span>and sorry, you got only<p>${
+			number.userScore
+		}</p>out of<p>${question.length * number.scoreNum}</p></span>`;
+	} else if (number.userScore < 80) {
+		scoreText.innerHTML = `<span>and great, you got only<p>${
+			number.userScore
+		}</p>out of<p>${question.length * number.scoreNum}</p></span>`;
+	} else {
+		scoreText.innerHTML = `<span>and supper, you got only<p>${
+			number.userScore
+		}</p>out of<p>${question.length * number.scoreNum}</p></span>`;
+	}
 }
 
 exitScoreBoxBtn.addEventListener('click', () => {
@@ -138,20 +167,58 @@ function startTimer(time) {
 	function timer() {
 		timeCount.innerHTML = time;
 		time--;
+		if (time < 9) {
+			let addZero = timeCount.textContent;
+			timeCount.innerHTML = '0' + addZero;
+		}
 		if (time === -1) {
 			number.progressBarWidth = 0;
 			clearInterval(number.counter);
 			clearInterval(number.progressBarId);
+			autoDisableAllElement(optionsList);
+			nextBtn.style.display = 'block';
 		}
 	}
+}
+
+function autoDisableAllElement(optionsList) {
+	const correctAnswer = question[number.questionCount].answer;
+	const childrenElementLength = optionsList.children.length;
+	autoSelectedAns(childrenElementLength, correctAnswer);
+	childElementDisable(childrenElementLength, optionsList);
 }
 
 function linerProgressBar() {
 	number.progressBarId = setInterval(() => {
 		number.progressBarWidth++;
 		timeLineProgress.style.width = `${number.progressBarWidth}%`;
-		if (number.progressBarWidth === 80) {
+		if (number.progressBarWidth === 70) {
 			timeLineProgress.style.backgroundColor = 'red';
+		}
+		if (number.progressBarWidth === 100) {
 		}
 	}, 159);
 }
+
+restartBtn.addEventListener('click', () => {
+	number.scoreNum = 5;
+	number.userScore = 0;
+	number.questionCount = 0;
+	number.score = 0;
+	number.counter = null;
+	number.timerValue = 15;
+	number.progressBarId = null;
+	number.progressBarWidth = 0;
+	scoreBox.classList.remove('activeInfo');
+	quizBox.classList.add('activeInfo');
+	showQuestions(0);
+});
+
+languageSwitchBtn.addEventListener('click', () => {
+	let isItTrue = languageSwitchBtn.checked;
+	if (isItTrue) {
+		question = EngQuestions;
+		return;
+	}
+	question = BangleQuestion;
+});
