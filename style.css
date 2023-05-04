@@ -186,6 +186,16 @@ body {
 	user-select: none;
 }
 
+.quiz_box header .linerProgressBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 3px;
+	/* width: 50%; */
+	background-color: var(--Orchid);
+	transition: all 0.3s ease;
+}
+
 .quiz_box section {
 	padding: 25px 30px 20px 30px;
 	background-color: #fff;
@@ -282,6 +292,7 @@ section .option_list .option:hover {
 }
 
 footer .next_btn {
+	display: none;
 	height: 40px;
 	padding: 0 14px;
 	font-size: 18px;
@@ -356,4 +367,58 @@ footer .next_btn:hover {
 	border: 1px solid;
 	cursor: pointer;
 	transition: all 0.3s ease;
+}
+
+/* slider button css */
+
+.languageSelection {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 20px;
+	margin: 0 10px;
+}
+
+.switch input {
+	display: none;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 50px;
+
+	background-color: #ccc;
+	transition: 0.4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: '';
+	height: 15px;
+	width: 15px;
+	left: 4px;
+	bottom: 3px;
+	border-radius: 50px;
+
+	background-color: white;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+	transform: translateX(26px);
 }
