@@ -20,7 +20,8 @@ body {
 .start_btn,
 .info_box,
 .quiz_box,
-.score_box {
+.score_box,
+.userInputFieldBox {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -32,11 +33,67 @@ body {
 
 .info_box.activeInfo,
 .quiz_box.activeInfo,
-.score_box.activeInfo {
+.score_box.activeInfo,
+.userInputFieldBox.activeInfo {
 	z-index: 5;
 	opacity: 1;
 	pointer-events: painted;
 	transform: translate(-50%, -50%) scale(1);
+}
+
+.userInputFieldBox {
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 18px;
+	width: 590px;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	pointer-events: none;
+	opacity: 0;
+}
+.userInputFieldBox .userInput {
+	width: 550px;
+	display: flex;
+	padding: 5px;
+	justify-content: space-between;
+}
+
+.userInputFieldBox label {
+	width: 150px;
+}
+
+.userInputFieldBox label div {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+}
+
+.userInputFieldBox input {
+	display: block;
+	width: 100%;
+	padding: 10px 5px;
+	border: 2px solid var(--Orchid);
+	border-radius: 5px;
+	font-size: 15px;
+}
+
+.userInputFieldBox .buttons {
+	display: flex;
+}
+
+.userInputFieldBox .buttons p {
+	color: red;
+	font-weight: 500;
+	opacity: 0;
+	transition: all 0.5 ease;
+}
+
+.userInputFieldBox .buttonsGroup {
+	display: flex;
 }
 
 .start_btn button {
@@ -93,7 +150,12 @@ body {
 	border-top: 1px solid lightgray;
 }
 
-.info_box .buttons button {
+.info_box .buttons .spacer {
+	flex: 1;
+}
+
+.info_box .buttons button,
+.userInputFieldBox .buttons button {
 	margin: 0 5px;
 	height: 40px;
 	width: 100px;
