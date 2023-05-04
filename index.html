@@ -38,6 +38,10 @@
 				<div class="info">
 					5. You'll get points on the basis of your correct answers.
 				</div>
+
+				<div class="customizeBtn"><button>Customize</button></div>
+			</div>
+			<div class="buttons">
 				<div class="languageSelection">
 					<span> Bangla </span>
 					<label class="switch">
@@ -46,10 +50,61 @@
 					</label>
 					<span> English </span>
 				</div>
-			</div>
-			<div class="buttons">
+				<div class="spacer"></div>
 				<button class="quit">Exit</button
 				><button class="restart">Continue</button>
+			</div>
+		</div>
+
+		<!-- User input field -->
+		<div class="userInputFieldBox">
+			<div class="userInput">
+				<label>
+					<div><span class="userInputLabel">User Name</span></div>
+
+					<input
+						type="text"
+						id="userNameInput"
+						placeholder="User Name"
+					/>
+				</label>
+				<label>
+					<div><span class="userInputLabel">Questions</span></div>
+					<input
+						min="1"
+						max="50"
+						type="number"
+						id="questionNumberInput"
+						placeholder="Number Of Question"
+					/>
+				</label>
+
+				<label>
+					<div>
+						<span class="userInputLabel">
+							each question value
+						</span>
+					</div>
+					<input
+						min="1"
+						max="10"
+						type="number"
+						id="questionValueInput"
+						placeholder="Number Of value"
+					/>
+				</label>
+			</div>
+			<div class="buttons">
+				<div>
+					<p>
+						Please ensure that all fields are filled out correctly
+						before submitting.
+					</p>
+				</div>
+				<div class="buttonsGroup">
+					<button class="quit">Exit</button>
+					<button class="restart">Continue</button>
+				</div>
 			</div>
 		</div>
 
