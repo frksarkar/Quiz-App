@@ -249,4 +249,134 @@ const EngQuestions = [
 		options: ['Greenland', 'Iceland', 'Norway', 'Finland'],
 		answer: 'Iceland',
 	},
+	{
+		number: 38,
+		question: 'What is the atomic number of carbon?',
+		options: ['2', '6', '10', '14'],
+		answer: '6',
+	},
+	{
+		number: 39,
+		question: 'What is the molecular formula of water?',
+		options: ['H2O', 'CO2', 'NH3', 'CH4'],
+		answer: 'H2O',
+	},
+	{
+		number: 40,
+		question:
+			'What type of bond exists between two atoms that share electrons unequally?',
+		options: ['Ionic', 'Covalent', 'Polar Covalent', 'Metallic'],
+		answer: 'Polar Covalent',
+	},
+	{
+		number: 41,
+		question: 'Which element has the symbol Fe?',
+		options: ['Iron', 'Gold', 'Silver', 'Copper'],
+		answer: 'Iron',
+	},
+	{
+		number: 42,
+		question: 'Which of the following is a noble gas?',
+		options: ['Oxygen', 'Nitrogen', 'Helium', 'Carbon Dioxide'],
+		answer: 'Helium',
+	},
+	{
+		number: 43,
+		question: 'Which of the following is a strong acid?',
+		options: ['HClO4', 'HNO3', 'H2SO3', 'H3PO4'],
+		answer: 'HClO4',
+	},
+	{
+		number: 44,
+		question: 'Which of the following is NOT a state of matter?',
+		options: ['Gas', 'Liquid', 'Solid', 'Plasma'],
+		answer: 'Plasma',
+	},
+	{
+		number: 45,
+		question: 'What is the formula for sodium chloride?',
+		options: ['NaClO4', 'Na2CO3', 'NaHCO3', 'NaCl'],
+		answer: 'NaCl',
+	},
+	{
+		number: 46,
+		question: 'Which of the following is a reducing agent?',
+		options: [
+			'Oxidizing agent',
+			'Proton acceptor',
+			'Proton donor',
+			'Electron donor',
+		],
+		answer: 'Electron donor',
+	},
+	{
+		number: 47,
+		question: 'What is the SI unit of pressure?',
+		options: ['Pascal', 'Newton', 'Joule', 'Watt'],
+		answer: 'Pascal',
+	},
+	{
+		number: 48,
+		question:
+			'What type of reaction occurs when two or more substances combine to form a single substance?',
+		options: ['Decomposition', 'Combustion', 'Synthesis', 'Neutralization'],
+		answer: 'Synthesis',
+	},
+	{
+		number: 49,
+		question:
+			'What is the process called when a solid changes directly into a gas?',
+		options: ['Evaporation', 'Sublimation', 'Condensation', 'Deposition'],
+		answer: 'Sublimation',
+	},
+	{
+		number: 50,
+		question: 'What is the pH of a neutral solution?',
+		options: ['0', '7', '14', '1'],
+		answer: '7',
+	},
+	{
+		number: 51,
+		question: 'What is the chemical formula for methane?',
+		options: ['CH4', 'CO2', 'NH3', 'H2O'],
+		answer: 'CH4',
+	},
+	{
+		number: 52,
+		question: 'What is the atomic symbol for gold?',
+		options: ['Ag', 'Au', 'Fe', 'Cu'],
+		answer: 'Au',
+	},
+	{
+		number: 53,
+		question:
+			'What is the name of the process in which a liquid changes into a gas at its boiling point?',
+		options: ['Condensation', 'Evaporation', 'Sublimation', 'Deposition'],
+		answer: 'Evaporation',
+	},
+	{
+		number: 54,
+		question: 'What is the chemical formula for sulfuric acid?',
+		options: ['HCl', 'HNO3', 'H2SO4', 'H3PO4'],
+		answer: 'H2SO4',
+	},
+	{
+		number: 55,
+		question: 'What is the name of the element with the symbol Mg?',
+		options: ['Magnesium', 'Manganese', 'Mercury', 'Molybdenum'],
+		answer: 'Magnesium',
+	},
+	{
+		number: 56,
+		question:
+			'What is the name of the process in which a gas changes directly into a solid?',
+		options: ['Deposition', 'Sublimation', 'Condensation', 'Evaporation'],
+		answer: 'Deposition',
+	},
+	{
+		number: 57,
+		question: 'What is the chemical formula for ammonia?',
+		options: ['NH4+', 'NO3-', 'NH3', 'N2H4'],
+		answer: 'NH3',
+	},
 ];
