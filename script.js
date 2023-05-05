@@ -14,6 +14,7 @@ const timeLineProgress = quizBox.querySelector('.linerProgressBar');
 const restartBtn = scoreBox.querySelector('.restart');
 const languageSwitchBtn = infoBox.querySelector('input');
 const timeOff = quizBox.querySelector('.time_text');
+const user = scoreBox.querySelector('.userName span');
 const xmarkIcon =
 	'<div class="icon cross"><i class="fa-solid fa-xmark"></i></div>';
 const tickIcon =
@@ -39,8 +40,8 @@ let question = BangleQuestion;
 
 const number = {
 	userName: 'gest',
-	questionLength: 10,
-	eachQuestionValue: 10,
+	questionLength: 50,
+	eachQuestionValue: 2,
 	userScore: 0,
 	questionCount: 0,
 	score: 0,
@@ -59,13 +60,18 @@ userInputBoxContinueBtn.addEventListener('click', () => {
 	if (
 		inputUserName.value != '' &&
 		inputQuestionLength.value != '' &&
-		inputQuestionValue.value != ''
+		parseInt(inputQuestionLength.value) > 0 &&
+		parseInt(inputQuestionLength.value) < 51 &&
+		inputQuestionValue.value != '' &&
+		parseInt(inputQuestionValue.value) > 0 &&
+		parseInt(inputQuestionValue.value) < 11
 	) {
+		errorMess.style.opacity = 0;
 		number.userName = inputUserName.value;
 		number.questionLength = parseInt(inputQuestionLength.value);
 		number.eachQuestionValue = parseInt(inputQuestionValue.value);
 		customizeUserField.classList.remove('activeInfo');
-		number.userName = quizBox.classList.add('activeInfo');
+		quizBox.classList.add('activeInfo');
 		showQuestions(0);
 		return;
 	}
@@ -183,28 +189,16 @@ function autoSelectedAns(childrenElementLength, correctAnswer) {
 
 function showScore() {
 	scoreBox.classList.add('activeInfo');
-	if (number.userScore < 40) {
-		scoreText.innerHTML = `<span>and sorry, you got only<p>${
-			number.userScore
-		}</p>out of<p>${
-			number.questionLength * number.eachQuestionValue
-		}</p></span>`;
-	} else if (number.userScore < 80) {
-		scoreText.innerHTML = `<span>and great, you got only<p>${
-			number.userScore
-		}</p>out of<p>${
-			number.questionLength * number.eachQuestionValue
-		}</p></span>`;
-	} else {
-		scoreText.innerHTML = `<span>and supper, you got only<p>${
-			number.userScore
-		}</p>out of<p>${
-			number.questionLength * number.eachQuestionValue
-		}</p></span>`;
-	}
+	scoreText.innerHTML = `<span>Your final score is<p>${
+		number.userScore
+	}</p>out of<p>${
+		number.questionLength * number.eachQuestionValue
+	}</p></span>`;
+	user.innerText = number.userName;
 }
 
 exitScoreBoxBtn.addEventListener('click', () => {
+	window.location.reload();
 	scoreBox.classList.remove('activeInfo');
 });
 
@@ -251,7 +245,7 @@ function linerProgressBar() {
 }
 
 restartBtn.addEventListener('click', () => {
-	number.eachQuestionValue = 5;
+	number.eachQuestionValue = 2;
 	number.userScore = 0;
 	number.questionCount = 0;
 	number.score = 0;
