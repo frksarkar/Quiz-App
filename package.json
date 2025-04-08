@@ -1,0 +1,23 @@
+{
+	"name": "quiz-app",
+	"version": "1.0.0",
+	"description": "A simple Quiz App implemented using HTML, CSS, and JavaScript, featuring a default set of 50 quizzes and answers.",
+	"main": "banglaQuestions.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/frksarkar/Quiz-App.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/frksarkar/Quiz-App/issues"
+	},
+	"homepage": "https://github.com/frksarkar/Quiz-App#readme",
+	"devDependencies": {
+		"typescript": "^5.8.2"
+	}
+}

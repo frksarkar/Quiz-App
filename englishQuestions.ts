@@ -1,4 +1,11 @@
-const EngQuestions = [
+interface Question {
+	number: number;
+	question: string;
+	options: string[];
+	answer: string;
+}
+
+const engQuestions: Question[] = [
 	{
 		number: 1,
 		question: 'What is the capital city of France?',
@@ -380,3 +387,5 @@ const EngQuestions = [
 		answer: 'NH3',
 	},
 ];
+
+export default engQuestions;

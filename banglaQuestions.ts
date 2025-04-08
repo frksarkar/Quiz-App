@@ -1,6 +1,11 @@
-// todo english and bangle version
+interface Question {
+	number: number;
+	question: string;
+	options: string[];
+	answer: string;
+}
 
-const BangleQuestion = [
+const bngQuestions: Question[] = [
 	{
 		number: 1,
 		question: 'ফ্রান্সের রাজধানী কোনটি?',
@@ -490,4 +495,35 @@ const BangleQuestion = [
 		],
 		answer: 'ইলেকট্রন সংখ্যার সমান',
 	},
+	{
+		number: 1,
+		question: 'বাংলাদেশের রাজধানী কোনটি?',
+		options: ['ঢাকা', 'চট্টগ্রাম', 'রাজশাহী', 'বরিশাল'],
+		answer: 'ঢাকা',
+	},
+	{
+		number: 2,
+		question: 'বাংলাদেশের জাতীয় ফুল কোনটি?',
+		options: ['গোলাপ', 'শাপলা', 'জবা', 'কাঁঠাল'],
+		answer: 'শাপলা',
+	},
+	{
+		number: 3,
+		question: 'বাংলাদেশের জাতীয় পাখি কোনটি?',
+		options: ['ময়না', 'দোয়েল', 'কাক', 'টিয়া'],
+		answer: 'দোয়েল',
+	},
+	{
+		number: 4,
+		question: 'বাংলাদেশের জাতীয় পশু কোনটি?',
+		options: ['গরু', 'মহিষ', 'হাতি', 'বাঘ'],
+		answer: 'বাঘ',
+	},
+	{
+		number: 5,
+		question: 'বাংলাদেশের জাতীয় খেলা কোনটি?',
+		options: ['ফুটবল', 'ক্রিকেট', 'হকি', 'ভলিবল'],
+		answer: 'হকি',
+	},
 ];
+export default bngQuestions;
